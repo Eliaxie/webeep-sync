@@ -2,7 +2,7 @@ import { ipcRenderer } from 'electron'
 import { i18n } from 'i18next'
 import React, { FC, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { IoSettingsSharp, IoWarning } from 'react-icons/io5'
+import { IoSettingsSharp, IoWarning, IoSyncCircle, IoStopCircle } from 'react-icons/io5'
 import { LoginContext } from '../LoginContext'
 
 let _i18n: i18n
@@ -55,12 +55,7 @@ export let MainView: FC<{ onLogin: () => void, onSettings: () => void }> = (prop
                 else props.onLogin()
             }}
         >
-            <span>
-                {syncing
-                    ? t('stop')
-                    : (isLogged ? t('sync') : t('loginToSync'))
-                }
-            </span>
+            {syncing ? <IoStopCircle /> : <IoSyncCircle />}
         </button>
         <div className="user-status">
             <div className="login-info">
